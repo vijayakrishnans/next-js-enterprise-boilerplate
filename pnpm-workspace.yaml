@@ -1,0 +1,17 @@
+packages:
+  - "apps/*"
+  - "packages/*"
+  - "tests/*"
+  - "tooling/*"
+
+# pnpm 10 blocks dependency build scripts unless allow-listed; wrangler's
+# workerd and esbuild need theirs to verify their platform binaries.
+onlyBuiltDependencies:
+  - esbuild
+  - workerd
+  - sharp
+
+# The template's npm `overrides` (its package.json `pnpm.overrides`), kept as
+# it ships them: a patched `tmp` for its dev tools.
+overrides:
+  "tmp@<=0.2.3": ">=0.2.4"
